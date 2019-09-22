@@ -43,7 +43,8 @@
               </h3>
               </v-col>
         </v-flex>  
-              <v-flex md6 xs12 lg4 xl3>
+            <div class="justify-center">
+              <v-flex md12 xs12 lg12 xl3>
                   <v-text-field
                       class="justify-center"
                       label="ค้นหาIDลูกค้า"
@@ -51,11 +52,21 @@
                       v-model="claim.customerId"
                   ></v-text-field>
               </v-flex>
-              <p v-if="customerCheck != ''">Customer Name : {{customerName}}</p> <br/>
-              <v-flex md6 xs12 lg4 xl3>
+            </div>
+            <div class="text-center">
+             <v-flex md12 xs12 lg12 xl3>
+              <br />
+              <br />
+              <p lg12 xs3 v-if="customerCheck != ''">Customer Name : {{customerName}}</p>
+              </v-flex>
+            </div> 
+            
+              <v-flex md6 xs12 lg12 xl3>
                   <v-btn @click="findCustomer" depressed large color="primary">Search</v-btn>
               </v-flex>
-               <v-flex md6 xs12 lg4 xl3>
+
+               
+               <v-flex md6 xs12 lg6 xl3>
                   <v-select
                     style="width: 300px"
                     label="ให้สั่งจ่ายเช็คในนามของ"
@@ -67,7 +78,7 @@
                   ></v-select>
                </v-flex>
        
-               
+               <v-flex md6 xs12 lg4 xl3>
                  <v-select
                   label="ได้รับการตรวจโดยวิธี"
                   style="width: 300px"
@@ -78,8 +89,9 @@
                   :rules="[(v) => !!v || 'Item is required']"
                   required
                 ></v-select>
+               </v-flex>
           
-         
+                <v-flex md6 xs12 lg6 xl3>
                  <v-select
                   label="วิธีการรับการรักษา"
                   style="width: 300px"
@@ -90,7 +102,9 @@
                   :rules="[(v) => !!v || 'Item is required']"
                   required
                 ></v-select>
-             
+                </v-flex>
+
+                <v-flex md6 xs12 lg4 xl3>
                   <v-select
                   style="width: 300px"
                   label="แพ็คเก็จที่สมัครกับเรา"
@@ -101,7 +115,9 @@
                   :rules="[(v) => !!v || 'Item is required']"
                   required
                 ></v-select>
-              
+                </v-flex>
+                <div class="btncenter">
+                <v-flex md6 xs12 lg12 xl3 >
                   <v-select
                   label="โรงพยาบาลที่เข้ารับการรักษา"
                   style="width: 300px"
@@ -112,7 +128,10 @@
                   :rules="[(v) => !!v || 'Item is required']"
                   required
                 ></v-select>
-     </v-layout>
+                </v-flex>
+                </div>
+      
+      </v-layout>
      </v-form>
            
            
@@ -233,6 +252,18 @@ import http from "../http-common";
             });
           this.submitted = true;
         },
+        clear() {
+      this.$refs.form.reset();
+      this.customerCheck = false;
+    },
+    refreshList() {
+      this.getPaycheckss();
+      this.getTreatmethods();
+      this.getHospitals();
+      this.getInsurances();
+      this.getCurebies();
+      this.getCustomers();
+    }
   },
       mounted() {
       this.getPaycheckss();
