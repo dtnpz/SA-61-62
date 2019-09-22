@@ -1,0 +1,6 @@
+
+client/node_modules/.bin/acorn
+
+client/node_modules/
+node_modules/axios/CHANGELOG.md
+node_modules/
